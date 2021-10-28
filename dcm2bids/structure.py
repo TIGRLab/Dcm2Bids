@@ -217,27 +217,47 @@ class Acquisition(object):
         else:
             self._intendedFor = [value]
 
-    def dstSidecarData(self, descriptions):
+    def dstSidecarData(self, descriptions, descriptionMap):
         """
         """
         data = self.srcSidecar.origData
         data["Dcm2bidsVersion"] = __version__
 
         # intendedFor key
+        # Check if intendedFor is None
         if self.intendedFor != [None]:
             intendedValue = []
             for index in self.intendedFor:
-                intendedDesc = descriptions[index]
+                intendedDesc = None
 
-                session = self.participant.session
-                dataType = intendedDesc["dataType"]
+                # If the intendedfor is an index
+                if isinstance(index, int):
+                    # Grab that descriptions index
+                    intendedDesc = descriptions[index]
+                # If the intendedfor is a string
+                elif isinstance(index, str):
+                    # Match the key
+                    # for desc in descriptionMap:
+                    descMatch = descriptionMap.get(index)
+                    # If the description is matched in the descriptionMap
+                    if (descMatch):
+                        # Grab the matched description
+                        intendedDesc = descMatch
+                    # If the description is not matched in the descriptionMap
+                    else:
+                        # Throw an error saying that the key was not found
+                        print("Key not found error, description key " + index + " does not exist")
 
-                niiFile = self.participant.prefix
-                niiFile += self.prepend(intendedDesc.get("customLabels", ""))
-                niiFile += self.prepend(intendedDesc["modalityLabel"])
-                niiFile += ".nii.gz"
+                if (intendedDesc):
+                    session = self.participant.session
+                    dataType = intendedDesc["dataType"]
 
-                intendedValue.append(opj(session, dataType, niiFile).replace("\\", "/"))
+                    niiFile = self.participant.prefix
+                    niiFile += self.prepend(intendedDesc.get("customLabels", ""))
+                    niiFile += self.prepend(intendedDesc["modalityLabel"])
+                    niiFile += ".nii.gz"
+
+                    intendedValue.append(opj(session, dataType, niiFile).replace("\\", "/"))
 
             if len(intendedValue) == 1:
                 data["IntendedFor"] = intendedValue[0]
