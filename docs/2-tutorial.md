@@ -151,7 +151,7 @@ We could then update our configuration file.
 }
 ```
 
-For fieldmap, we added an `"intendedFor"` field to show that these fieldmaps should be use with our fMRI acquisition. Have a look at the explanation of [intendedFor](/docs/3-configuration/#intendedfor) in the documentation or in the [BIDS specification][bids-fmap].
+For fieldmap, we added an `"intendedFor"` field to show that these fieldmaps should be use with our fMRI acquisition. Have a look at the explanation of [intendedFor](3-configuration/#intendedfor) in the documentation or in the [BIDS specification][bids-fmap].
 
 ## Running dcm2bids
 

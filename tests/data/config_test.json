@@ -28,6 +28,7 @@
             }
         },
         {
+            "key": "DTI",
             "dataType": "dwi",
             "modalityLabel": "dwi",
             "criteria": {
@@ -53,7 +54,7 @@
                 "EchoTime": 0.00738,
                 "ImageType": ["ORIGINAL", "PRIMARY", "M", "ND"]
             },
-            "IntendedFor": 3
+            "intendedFor": "DTI"
         },
         {
             "dataType": "dwi",
