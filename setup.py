@@ -73,7 +73,7 @@ if __name__ == "__main__":
         entry_points=ENTRY_POINTS,
         python_requires=">=3.6",
         use_scm_version=True,
-        setup_requires=['setuptools_scm'],
+        setup_requires=['setuptools'],
         install_requires=[
           'future>=0.17.1',
           # TODO: drop this when py3.6 is end-of-life
