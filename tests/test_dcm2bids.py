@@ -61,7 +61,7 @@ def test_dcm2bids():
 
     data = load_json(
         os.path.join(
-            bidsDir.name, "sub-01", "localizer", "sub-01_run-01_localizer.json"
+            bidsDir.name, "sub-01", "localizer", "sub-01_run-1_localizer.json"
         )
     )
     assert data["ProcedureStepDescription"] == "Modify by dcm2bids"
@@ -112,7 +112,7 @@ def test_caseSensitive_false():
     path_localizer = os.path.join(bidsDir.name,
                                   "sub-01",
                                   "localizer",
-                                  "sub-01_run-01_localizer.json")
+                                  "sub-01_run-1_localizer.json")
 
     original_01_localizer = os.path.join(TEST_DATA_DIR,
                                          "sidecars",

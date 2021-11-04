@@ -84,11 +84,17 @@ For a longer example of a Dcm2Bids config json, see [here](https://github.com/un
 
 Optional field to change or add information in a sidecar.
 
+## key
+
+This is an optional field to organize descriptions by unique identifiers. On it's own, it will not have any effect on the bids output. However, adding these will allow you to refer to descriptions via their key in the `intendedFor` field. These must be unique across descriptions.
+
 ## intendedFor
 
 Optional field to add an `IntendedFor` entry in the sidecar of a fieldmap. Just put the index or a list of index of the description(s) that's intended for.
 
 Python index begins at `0` so in the example, `0` means it is intended for `task-rest_bold`.
+
+You may also refer to descriptions by their `key`. Just make sure that there exists a description with the `key` you refer to here.
 
 [^1]: For each acquisition, `dcm2niix` creates an associated `.json` file,
     containing information from the dicom header. These are known as

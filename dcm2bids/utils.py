@@ -34,7 +34,7 @@ class DEFAULT(object):
     compKeys = ["SeriesNumber", "AcquisitionTime", "SidecarFilename"]
     searchMethod = "fnmatch"
     searchMethodChoices = ["fnmatch", "re"]
-    runTpl = "_run-{:02d}"
+    runTpl = "_run-{:1d}"
     caseSensitive = True
 
     # misc

@@ -54,6 +54,9 @@ class Dcm2bids(object):
         self.forceDcm2niix = forceDcm2niix
         self.logLevel = log_level
 
+        # Description map setup
+        self.set_descriptionMap()
+
         # logging setup
         self.set_logger()
 
@@ -66,6 +69,23 @@ class Dcm2bids(object):
         self.logger.info("session: %s", self.participant.session)
         self.logger.info("config: %s", os.path.realpath(config))
         self.logger.info("BIDS directory: %s", os.path.realpath(output_dir))
+
+    def set_descriptionMap(self):
+        """ Set a dictionary from keys to descriptions"""
+        self.descriptionMap = dict()
+        # Get all the file descriptions in json
+        descriptions = self.config["descriptions"]
+        for desc in descriptions:
+            key = desc.get('key')
+            # If the key is already in the description map
+            if (key in self.descriptionMap):
+                # Raise an error
+                # self.logger.error("Duplicate key error, key " + key + " found more than once")
+                pass
+            # Otherwise
+            else:
+                # Set the key to the given description
+                self.descriptionMap[key] = desc
 
     @property
     def dicomDirs(self):
@@ -181,7 +201,7 @@ class Dcm2bids(object):
 
             # use
             elif ext == ".json":
-                data = acquisition.dstSidecarData(self.config["descriptions"])
+                data = acquisition.dstSidecarData(self.config["descriptions"], self.descriptionMap)
                 save_json(dstFile, data)
                 os.remove(srcFile)
 
