@@ -227,18 +227,18 @@ class Acquisition(object):
         # Check if intendedFor is None
         if self.intendedFor != [None]:
             intendedValue = []
-            for index in self.intendedFor:
+            for intendedForRef in self.intendedFor:
                 intendedDesc = None
 
                 # If the intendedfor is an index
-                if isinstance(index, int):
+                if isinstance(intendedForRef, int):
                     # Grab that descriptions index
-                    intendedDesc = descriptions[index]
+                    intendedDesc = descriptions[intendedForRef]
                 # If the intendedfor is a string
-                elif isinstance(index, str):
+                elif isinstance(intendedForRef, str):
                     # Match the key
                     # for desc in descriptionMap:
-                    descMatch = descriptionMap.get(index)
+                    descMatch = descriptionMap.get(intendedForRef)
                     # If the description is matched in the descriptionMap
                     if (descMatch):
                         # Grab the matched description
@@ -246,7 +246,7 @@ class Acquisition(object):
                     # If the description is not matched in the descriptionMap
                     else:
                         # Throw an error saying that the key was not found
-                        print("Key not found error, description key " + index + " does not exist")
+                        print("Key not found error, description key " + intendedForRef + " does not exist")
 
                 if (intendedDesc):
                     session = self.participant.session

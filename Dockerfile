@@ -1,5 +1,5 @@
 # Use Ubuntu 20.04 LTS
-FROM ubuntu:latest
+FROM ubuntu:xenial-20210722
 
 # Prepare environment
 RUN apt-get update && \
@@ -11,7 +11,7 @@ RUN apt-get update && \
 
 WORKDIR /src/dcm2niix_build
 
-RUN curl -sSLO https://github.com/rordenlab/dcm2niix/releases/latest/download/dcm2niix_lnx.zip && \
+RUN curl -sSLO https://github.com/rordenlab/dcm2niix/releases/download/v1.0.20211006/dcm2niix_lnx.zip && \
     unzip dcm2niix_lnx.zip && \
     rm dcm2niix_lnx.zip
 
