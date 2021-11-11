@@ -215,12 +215,12 @@ def get_arguments():
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description="""
-Reorganising NIfTI files from dcm2niix into the Brain Imaging Data Structure
+Reorganising NIfTI files from dcm2niix into the Brain Imaging Data Structure (TIGRLab version)
 dcm2bids {}""".format(
             __version__
         ),
         epilog="""
-            Documentation at https://github.com/unfmontreal/Dcm2Bids
+            Documentation at https://github.com/tigrlab/Dcm2Bids
             """,
     )
 
